@@ -16,28 +16,36 @@ const StyledMovieSection = styled.div`
   }
 
   .movie-container {
+    position: relative;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, .3);
     display: flex;
     margin: 5rem;
     background-color: white;
 
-    .movie-thumbnail-container {
-      background-size: cover;
-      flex: 30%;
-      padding-right: 2rem;
-    }
-
-    .movie-info-section {
-      flex: 70%;
-      padding-left: 2rem;
-
-
-      .ratings-section {
-        display: flex
-      }
+    .btn-close {
+      position: absolute;
+      text-decoration: none;
+      top: 0.5rem;
+      right: 1rem;
+      font-size: 150%;
     }
   }
 
+  .movie-thumbnail-container {
+    background-size: cover;
+    flex: 30%;
+    padding-right: 2rem;
+  }
+
+  .movie-info-section {
+    flex: 70%;
+    padding: 2rem;
+  }
+
+  .ratings-section {
+    display: flex;
+    justify-content: space-between;
+  }
 
 `;
 
@@ -48,7 +56,11 @@ class MovieResult extends Component {
     return ratings.map(rating => {
       let { Source, Value } = rating;
       return (
-        <span>{Value}</span>
+        <div className='movie-rating'>
+          <strong>{Value}</strong>
+          <br />
+          {Source}
+        </div>
       )
     })
   }
@@ -62,15 +74,19 @@ class MovieResult extends Component {
 
       return (
         <div className='movie-container'>
+          <a href='#' className='btn-close'>
+            &times;
+          </a>
           <div className='movie-thumbnail-container' style={{ backgroundImage: `url(${Poster})` }}>
 
           </div>
           <div className='movie-info-section'>
             <h1>{`${Title} (${Year})`}</h1>
-            <div className='rating-section'>
+            <div className='ratings-section'>
               {this.renderRatings(Ratings)}
             </div>
-            <p><h3>Plot</h3>{Plot}</p>
+            <h3>Plot</h3>
+            <p>{Plot}</p>
           </div>
         </div>
       )
