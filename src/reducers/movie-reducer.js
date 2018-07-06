@@ -1,4 +1,4 @@
-import { FETCH_MOVIE, DELETE_MOVIE } from '../actions';
+import { FETCH_MOVIE, DELETE_MOVIE, LOADING_MOVIE } from '../actions';
 
 export default function(state = {}, action) {
   console.log(action);
@@ -6,8 +6,15 @@ export default function(state = {}, action) {
     case FETCH_MOVIE:
       return action.payload;
       break;
+
     case DELETE_MOVIE:
       return {};
+      break;
+
+    case LOADING_MOVIE:
+      return {
+        loading: true
+      };
       break;
   }
   return state;

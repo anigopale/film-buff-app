@@ -121,6 +121,30 @@ class MovieResult extends Component {
   renderSection() {
     let { movieData } = this.props;
 
+    if(movieData.Error) {
+      // render error message
+      return (
+        <div className='welcome-section'>
+          <h1>
+            No results found
+          </h1>
+          <p>
+            please try again
+          </p>
+        </div>
+      )
+    }
+
+    if(movieData.loading) {
+      return (
+        <div className='welcome-section'>
+          <h1>
+            ...
+          </h1>
+        </div>
+      );
+    }
+
     if(movieData.Title) {
       // if movie exists, render fetched data
       let { Poster, Title, Year, Plot, Ratings } = movieData;
@@ -148,19 +172,6 @@ class MovieResult extends Component {
       )
     }
 
-    if(movieData.Error) {
-      // render error message
-      return (
-        <div className='welcome-section'>
-          <h1>
-            No results found
-          </h1>
-          <p>
-            please try again
-          </p>
-        </div>
-      )
-    }
 
     // render welcome text if reducer is empty
     return (
