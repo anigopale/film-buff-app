@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import styled from 'styled-components';
 import SearchBar from './components/search-bar';
+import MovieResult from './components/movie-result';
 
 const StyledApp = styled.div`
   font-size : 1rem;
@@ -31,6 +32,10 @@ const StyledHeader = styled.div`
   }
 `;
 
+const StyledResultSection = styled.div`
+
+`;
+
 class App extends Component {
   render() {
     return (
@@ -42,6 +47,9 @@ class App extends Component {
           </h2>
           <SearchBar />
         </StyledHeader>
+        <StyledResultSection>
+          <MovieResult />
+        </StyledResultSection>
       </StyledApp>
     );
   }
