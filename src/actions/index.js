@@ -1,3 +1,4 @@
+export const FETCH_MOVIE = 'fetch-movie';
 
 export function fetchMovie(term) {
   return function(dispatch) {
@@ -7,12 +8,10 @@ export function fetchMovie(term) {
       return response.json();
     })
     .then(data => {
-      console.log(data);
-    })
-
-    return {
-      type: "",
-      payload: ""
-    }
+      dispatch({
+        type: FETCH_MOVIE,
+        payload: data
+      })
+    });
   }
 }

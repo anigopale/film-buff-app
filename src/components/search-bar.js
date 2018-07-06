@@ -16,6 +16,7 @@ const StyledForm = styled.form`
     border-radius: 100px;
     height: 25%;
     width: 50%;
+    color: #262626;
     transition: all 0.5s;
 
     &:focus {
