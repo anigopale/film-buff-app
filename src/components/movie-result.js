@@ -96,7 +96,8 @@ class MovieResult extends Component {
 
   // on "Watched" button click, store movieData
   onWatchedBtnClick = () => {
-    this.props.addToWatchedList(this.props.movieData);
+    let { Poster, Title, Year } = this.props.movieData;
+    this.props.addToWatchedList({ Poster, Title, Year });
   }
 
   // on card close, delete fetched movie
