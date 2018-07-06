@@ -1,6 +1,48 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { deleteMovie } from '../actions';
+
+const riseUp = keyframes`
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
+
+const StyledWatchedButton = styled.a`
+  float: right;
+  margin-top: 1rem;
+  text-decoration: none;
+  padding: 1rem;
+  background-color: #3498db;
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, .3);
+  cursor: pointer;
+  color: white;
+  transition: all 0.2s;
+  border-radius: 200px;
+
+  &:link,
+  &:visited {
+    text-decoration: none;
+    padding: 1rem;
+    background-color: #3498db;
+  }
+
+  &:hover {
+    box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, .3);
+    transform: translateY(-0.2rem);
+  }
+  &:active {
+    box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, .3);
+    transform: translateY(-0.1rem);
+  }
+
+`;
 
 const StyledMovieSection = styled.div`
   .welcome-section {
@@ -21,6 +63,7 @@ const StyledMovieSection = styled.div`
     display: flex;
     margin: 5rem;
     background-color: white;
+    animation: ${riseUp} .5s ease-out;
 
     .btn-close {
       position: absolute;
@@ -51,6 +94,10 @@ const StyledMovieSection = styled.div`
 
 class MovieResult extends Component {
 
+  onCloseClick = () => {
+    this.props.deleteMovie();
+  }
+
 
   renderRatings(ratings) {
     return ratings.map(rating => {
@@ -74,7 +121,7 @@ class MovieResult extends Component {
 
       return (
         <div className='movie-container'>
-          <a href='#' className='btn-close'>
+          <a href='#' className='btn-close' onClick={this.onCloseClick}>
             &times;
           </a>
           <div className='movie-thumbnail-container' style={{ backgroundImage: `url(${Poster})` }}>
@@ -87,7 +134,23 @@ class MovieResult extends Component {
             </div>
             <h3>Plot</h3>
             <p>{Plot}</p>
+            <StyledWatchedButton>
+              Watched
+            </StyledWatchedButton>
           </div>
+        </div>
+      )
+    }
+
+    if(movieData.Error) {
+      return (
+        <div className='welcome-section'>
+          <h1>
+            No results found
+          </h1>
+          <p>
+            please try again
+          </p>
         </div>
       )
     }
@@ -118,4 +181,4 @@ function mapStateToProps({ movieData }) {
   return { movieData };
 }
 
-export default connect(mapStateToProps)(MovieResult);
+export default connect(mapStateToProps, { deleteMovie })(MovieResult);

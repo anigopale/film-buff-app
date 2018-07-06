@@ -1,4 +1,5 @@
 export const FETCH_MOVIE = 'fetch-movie';
+export const DELETE_MOVIE = 'delete-movie';
 
 export function fetchMovie(term) {
   return function(dispatch) {
@@ -13,5 +14,11 @@ export function fetchMovie(term) {
         payload: data
       })
     });
+  }
+}
+
+export function deleteMovie() {
+  return {
+    type: DELETE_MOVIE
   }
 }
