@@ -1,5 +1,6 @@
 export const FETCH_MOVIE = 'fetch-movie';
 export const DELETE_MOVIE = 'delete-movie';
+export const WATCH_MOVIE = 'watch-movie';
 
 export function fetchMovie(term) {
   return function(dispatch) {
@@ -20,5 +21,12 @@ export function fetchMovie(term) {
 export function deleteMovie() {
   return {
     type: DELETE_MOVIE
+  }
+}
+
+export function addToWatchedList(movie) {
+  return {
+    type: WATCH_MOVIE,
+    payload: movie
   }
 }

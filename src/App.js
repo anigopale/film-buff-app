@@ -4,6 +4,7 @@ import './App.css';
 import styled from 'styled-components';
 import SearchBar from './components/search-bar';
 import MovieResult from './components/movie-result';
+import WatchedMovies from './components/watched-movies';
 
 const StyledApp = styled.div`
   font-size : 1rem;
@@ -32,6 +33,10 @@ const StyledHeader = styled.div`
   }
 `;
 
+const StyledWatchedSection = styled.div`
+
+`;
+
 const StyledResultSection = styled.div`
 
 `;
@@ -50,6 +55,9 @@ class App extends Component {
         <StyledResultSection>
           <MovieResult />
         </StyledResultSection>
+        <StyledWatchedSection>
+          <WatchedMovies />
+        </StyledWatchedSection>
       </StyledApp>
     );
   }

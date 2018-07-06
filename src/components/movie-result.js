@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
-import { deleteMovie } from '../actions';
+import { deleteMovie, addToWatchedList } from '../actions';
 
 const riseUp = keyframes`
   0% {
@@ -94,10 +94,15 @@ const StyledMovieSection = styled.div`
 
 class MovieResult extends Component {
 
+  // on "Watched" button click, store movieData
+  onWatchedBtnClick = () => {
+    this.props.addToWatchedList(this.props.movieData);
+  }
+
+  // on card close, delete fetched movie
   onCloseClick = () => {
     this.props.deleteMovie();
   }
-
 
   renderRatings(ratings) {
     return ratings.map(rating => {
@@ -134,7 +139,7 @@ class MovieResult extends Component {
             </div>
             <h3>Plot</h3>
             <p>{Plot}</p>
-            <StyledWatchedButton>
+            <StyledWatchedButton onClick={this.onWatchedBtnClick}>
               Watched
             </StyledWatchedButton>
           </div>
@@ -143,6 +148,7 @@ class MovieResult extends Component {
     }
 
     if(movieData.Error) {
+      // render error message
       return (
         <div className='welcome-section'>
           <h1>
@@ -181,4 +187,4 @@ function mapStateToProps({ movieData }) {
   return { movieData };
 }
 
-export default connect(mapStateToProps, { deleteMovie })(MovieResult);
+export default connect(mapStateToProps, { deleteMovie, addToWatchedList })(MovieResult);
