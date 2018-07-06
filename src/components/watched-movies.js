@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { deleteWatched } from '../actions';
 
 const StyledWatchedMoviesContainer = styled.div`
   display: flex;
@@ -17,10 +18,14 @@ class WatchedMovies extends Component {
     // if watched movies isn't empty && there's no fetched movie, render watched movies
     if(this.props.watchedMovies.length
     && (!this.props.movieData.Title && !this.props.movieData.loading )) {
-      return this.props.watchedMovies.map(movie => {
+      return this.props.watchedMovies.map((movie, index) => {
         let { Poster, Title } = movie;
         return (
-          <img src={Poster} alt={Title} />
+          <img src={Poster} alt={Title}
+            onClick={() => {
+              this.props.deleteWatched(index);
+            }}
+            />
         );
       });
     }
@@ -39,4 +44,4 @@ function mapStateToProps({ watchedMovies, movieData }) {
   return { watchedMovies, movieData };
 }
 
-export default connect(mapStateToProps)(WatchedMovies);
+export default connect(mapStateToProps, { deleteWatched })(WatchedMovies);
