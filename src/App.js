@@ -15,12 +15,19 @@ const StyledApp = styled.div`
 
 const StyledHeader = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
   height: 5rem;
   background-color: #2c3e50;
-  justify-content: space-between;
   color: white;
+  h2 {
+    font-weight: 300;
+  }
+
   i {
     color: white;
+    padding: 0 1rem;
   }
 `;
 
@@ -29,10 +36,10 @@ class App extends Component {
     return (
       <StyledApp>
         <StyledHeader>
-          <h1>
+          <h2>
             <i className="fas fa-film"></i>
             FilmBuff
-          </h1>
+          </h2>
           <SearchBar />
         </StyledHeader>
       </StyledApp>
