@@ -6,6 +6,7 @@ import SearchBar from './components/search-bar';
 import MovieResult from './components/movie-result';
 import WatchedMovies from './components/watched-movies';
 
+// fixed width layout
 const StyledApp = styled.div`
   font-size : 1rem;
   max-width: 70rem;
@@ -14,6 +15,16 @@ const StyledApp = styled.div`
   background-color: #ecf0f1;
   box-shadow: 0 2rem 6rem rgba(0, 0, 0, .3);
 `;
+
+// full screen layout
+// const StyledApp = styled.div`
+//   font-size : 1rem;
+//   min-height: 100vh;
+//   margin: auto;
+//   background-color: #ecf0f1;
+//   box-shadow: 0 2rem 6rem rgba(0, 0, 0, .3);
+// `;
+
 
 const StyledHeader = styled.div`
   display: flex;

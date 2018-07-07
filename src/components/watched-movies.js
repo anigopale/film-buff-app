@@ -3,9 +3,25 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { deleteWatched } from '../actions';
 
+const StyledImage = styled.div`
+  background-image: url(${props => props.poster});
+  background-color: blue;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, .3);
+  content: "";
+  cursor: pointer;
+`;
+
 const StyledWatchedMoviesContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
+  width: 100%;
+  margin: 0 auto;
+  padding: 5rem;
+  display: grid;
+  grid-template-rows: repeat(2, minmax(20rem, min-content));
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 15rem));
+  grid-gap: 5rem;
 
   img {
     box-shadow: 0 1rem 1rem rgba(0, 0, 0, .3);
@@ -21,10 +37,9 @@ class WatchedMovies extends Component {
       return this.props.watchedMovies.map((movie, index) => {
         let { Poster, Title } = movie;
         return (
-          <img src={Poster} alt={Title}
-            onClick={() => {
-              this.props.deleteWatched(index);
-            }}
+          <StyledImage
+            poster={Poster}
+            onClick={() => {this.props.deleteWatched()}}
             />
         );
       });
