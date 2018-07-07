@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { WATCH_MOVIE, DELETE_WATCHED, USER_FEEDBACK } from '../actions';
+import { WATCH_MOVIE, DELETE_WATCHED, USER_FEEDBACK, LOAD_LOCAL_DATA } from '../actions';
 
 export default function(state = [], action) {
   switch (action.type) {
@@ -29,6 +29,9 @@ export default function(state = [], action) {
       return [ ...state];
       break;
 
+    case LOAD_LOCAL_DATA:
+      return action.payload;
+      break;
 
   }
   return state;
