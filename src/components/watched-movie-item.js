@@ -22,13 +22,13 @@ const StyledImage = styled.div`
 
 class WatchedMovieItem extends Component {
   render() {
-    let { poster, index } = this.props;
+    let { poster, itemIndex } = this.props;
 
     return (
       <StyledImage
         poster={poster}
         onClick={() => {
-          this.props.deleteWatched(index)
+          this.props.deleteWatched(itemIndex)
         }}
         >
 
