@@ -57,3 +57,10 @@ export function giveFeedback(index, value) {
     }
   };
 }
+
+export function showWatchedMovie(movie) {
+  return {
+    type: FETCH_MOVIE,
+    payload: movie
+  }
+}

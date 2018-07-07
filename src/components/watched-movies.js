@@ -31,6 +31,7 @@ class WatchedMovies extends Component {
             poster={Poster}
             itemIndex={index}
             likeMovie={like}
+            movie={movie}
             />
         );
       });

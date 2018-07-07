@@ -5,9 +5,9 @@ export default function(state = [], action) {
   switch (action.type) {
     case WATCH_MOVIE:
       if(!_.find(state, action.payload)) {
-        let { Poster, Title, Year } = action.payload;
+        let { Poster, Title, Year, Plot, Ratings } = action.payload;
         // if movie isn't watched, add to watched list, with like=null
-        return [ { Poster, Title, Year, like: null }, ...state];
+        return [ { Poster, Title, Year, Plot, Ratings, like: null }, ...state];
       }
       break;
 
@@ -22,10 +22,10 @@ export default function(state = [], action) {
       let { index, value } = action.payload;
 
       // retrieving appropriate WatchedMovieItem
-      let { Poster, Title, Year } = state[index];
+      let { Poster, Title, Year, Plot, Ratings } = state[index];
 
       // update Movie data with user feedback
-      state.splice(index, 1, { Poster, Title, Year, like: value });
+      state.splice(index, 1, { Poster, Title, Year, Plot, Ratings, like: value });
       return [ ...state];
       break;
 
