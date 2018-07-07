@@ -2,17 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { deleteWatched } from '../actions';
-
-const StyledImage = styled.div`
-  background-image: url(${props => props.poster});
-  background-color: blue;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-  box-shadow: 0 1rem 1rem rgba(0, 0, 0, .3);
-  content: "";
-  cursor: pointer;
-`;
+import WatchedMovieItem from './watched-movie-item';
 
 const StyledWatchedMoviesContainer = styled.div`
 
@@ -35,11 +25,12 @@ class WatchedMovies extends Component {
     if(this.props.watchedMovies.length
     && (!this.props.movieData.Title && !this.props.movieData.loading )) {
       return this.props.watchedMovies.map((movie, index) => {
-        let { Poster, Title } = movie;
+        let { Poster, Title, like } = movie;
         return (
-          <StyledImage
+          <WatchedMovieItem
             poster={Poster}
-            onClick={() => {this.props.deleteWatched()}}
+            itemIndex={index}
+            likeMovie={like}
             />
         );
       });

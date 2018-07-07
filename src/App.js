@@ -10,7 +10,7 @@ import WatchedMovies from './components/watched-movies';
 const StyledApp = styled.div`
   font-size : 1rem;
   max-width: 70rem;
-  min-height: 50rem;
+  min-height: 30rem;
   margin: 4em auto;
   background-color: #ecf0f1;
   box-shadow: 0 2rem 6rem rgba(0, 0, 0, .3);
