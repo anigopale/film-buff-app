@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { deleteWatched, giveFeedback } from '../actions';
+import { deleteWatched, giveFeedback, showWatchedMovie } from '../actions';
 
 const StyledImage = styled.div`
   position: relative;
@@ -63,6 +63,15 @@ const StyledImage = styled.div`
       color: #2ecc71;
     }
   }
+
+  .fa-eye {
+    top: 1rem;
+    left: 1rem;
+
+    &:hover {
+      color: #1abc9c;
+    }
+  }
 `;
 
 class WatchedMovieItem extends Component {
@@ -92,7 +101,7 @@ class WatchedMovieItem extends Component {
   }
 
   render() {
-    let { poster, itemIndex, likeMovie } = this.props;
+    let { poster, itemIndex, likeMovie, movie } = this.props;
 
     return (
       <StyledImage poster={poster} likeMovie={likeMovie}>
@@ -102,6 +111,11 @@ class WatchedMovieItem extends Component {
             this.props.deleteWatched(itemIndex)
           }}
           />
+        <i className="fas fa-eye"
+          onClick={() => {
+            this.props.showWatchedMovie(movie)
+          }}
+          />
         {this.renderUpvoteButton()}
         {this.renderDownvoteButton()}
       </StyledImage>
@@ -109,7 +123,7 @@ class WatchedMovieItem extends Component {
   }
 }
 
-export default connect(null, { deleteWatched, giveFeedback })(WatchedMovieItem);
+export default connect(null, { deleteWatched, giveFeedback, showWatchedMovie })(WatchedMovieItem);
 
 // style for img elements
 // {
