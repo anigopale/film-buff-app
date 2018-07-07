@@ -12,6 +12,12 @@ const StyledImage = styled.div`
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, .3);
   content: "";
   cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: translateY(0.2rem);
+    box-shadow: 0 .5rem .5rem rgba(0, 0, 0, .3);
+  }
 `;
 
 const StyledWatchedMoviesContainer = styled.div`
@@ -40,7 +46,9 @@ class WatchedMovies extends Component {
           <StyledImage
             poster={Poster}
             onClick={() => {this.props.deleteWatched()}}
-            />
+            >
+            <i className="far fa-thumbs-down"></i>
+          </StyledImage>
         );
       });
     }
