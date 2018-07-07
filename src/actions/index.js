@@ -6,7 +6,7 @@ export const DELETE_WATCHED = 'delete-watched';
 
 export function fetchMovie(term) {
   return function(dispatch) {
-    const url = `http://www.omdbapi.com/?t=${term}&apikey=aabca0d`;
+    const url = `https://www.omdbapi.com/?t=${term}&apikey=aabca0d`;
 
     dispatch({
       type: LOADING_MOVIE
