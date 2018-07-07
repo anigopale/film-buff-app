@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { fetchMovie } from '../actions';
+import { fetchMovie, deleteMovie } from '../actions';
 
 const StyledForm = styled.form`
   flex: 0 0 40%;
@@ -56,4 +56,4 @@ class SearchBar extends Component {
   }
 }
 
-export default connect(null, { fetchMovie })(SearchBar);
+export default connect(null, { fetchMovie, deleteMovie })(SearchBar);

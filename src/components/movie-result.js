@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
-import { deleteMovie } from '../actions';
+import { deleteMovie, addToWatchedList } from '../actions';
 
 const riseUp = keyframes`
   0% {
@@ -78,6 +78,7 @@ const StyledMovieSection = styled.div`
     background-size: cover;
     flex: 30%;
     padding-right: 2rem;
+    clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
   }
 
   .movie-info-section {
@@ -93,11 +94,18 @@ const StyledMovieSection = styled.div`
 `;
 
 class MovieResult extends Component {
+  state = { watched: false };
 
+  // on "Watched" button click, store movieData
+  onWatchedBtnClick = () => {
+    let { Poster, Title, Year } = this.props.movieData;
+    this.props.addToWatchedList({ Poster, Title, Year });
+  }
+
+  // on card close, delete fetched movie
   onCloseClick = () => {
     this.props.deleteMovie();
   }
-
 
   renderRatings(ratings) {
     return ratings.map(rating => {
@@ -114,6 +122,30 @@ class MovieResult extends Component {
 
   renderSection() {
     let { movieData } = this.props;
+
+    if(movieData.Error) {
+      // render error message
+      return (
+        <div className='welcome-section'>
+          <h1>
+            No results found
+          </h1>
+          <p>
+            please try again
+          </p>
+        </div>
+      )
+    }
+
+    if(movieData.loading) {
+      return (
+        <div className='welcome-section'>
+          <h1>
+            ...
+          </h1>
+        </div>
+      );
+    }
 
     if(movieData.Title) {
       // if movie exists, render fetched data
@@ -134,7 +166,7 @@ class MovieResult extends Component {
             </div>
             <h3>Plot</h3>
             <p>{Plot}</p>
-            <StyledWatchedButton>
+            <StyledWatchedButton onClick={this.onWatchedBtnClick}>
               Watched
             </StyledWatchedButton>
           </div>
@@ -142,18 +174,6 @@ class MovieResult extends Component {
       )
     }
 
-    if(movieData.Error) {
-      return (
-        <div className='welcome-section'>
-          <h1>
-            No results found
-          </h1>
-          <p>
-            please try again
-          </p>
-        </div>
-      )
-    }
 
     // render welcome text if reducer is empty
     return (
@@ -181,4 +201,4 @@ function mapStateToProps({ movieData }) {
   return { movieData };
 }
 
-export default connect(mapStateToProps, { deleteMovie })(MovieResult);
+export default connect(mapStateToProps, { deleteMovie, addToWatchedList })(MovieResult);
