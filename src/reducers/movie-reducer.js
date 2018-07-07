@@ -1,7 +1,6 @@
 import { FETCH_MOVIE, DELETE_MOVIE, LOADING_MOVIE } from '../actions';
 
 export default function(state = {}, action) {
-  console.log(action);
   switch (action.type) {
     case FETCH_MOVIE:
       return action.payload;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { deleteWatched } from '../actions';
+import { deleteWatched, giveFeedback } from '../actions';
 
 const StyledImage = styled.div`
   position: relative;
@@ -16,7 +16,7 @@ const StyledImage = styled.div`
 
 
   &:hover {
-    
+
   }
 
   i {
@@ -56,11 +56,27 @@ const StyledImage = styled.div`
 class WatchedMovieItem extends Component {
 
   renderUpvoteButton() {
-    return <i class="far fa-thumbs-up"></i>;
+    let { itemIndex } = this.props;
+    return (
+      <i
+        className="far fa-thumbs-up"
+        onClick={() => {
+          this.props.giveFeedback(itemIndex, "yes")
+        }}
+        />
+    );
   }
 
   renderDownvoteButton() {
-    return <i class="far fa-thumbs-down"></i>;
+    let { itemIndex } = this.props;
+    return (
+      <i
+        className="far fa-thumbs-down"
+        onClick={() => {
+          this.props.giveFeedback(itemIndex, "no")
+        }}
+        />
+    );
   }
 
   render() {
@@ -81,7 +97,7 @@ class WatchedMovieItem extends Component {
   }
 }
 
-export default connect(null, { deleteWatched })(WatchedMovieItem);
+export default connect(null, { deleteWatched, giveFeedback })(WatchedMovieItem);
 
 // style for img elements
 // {

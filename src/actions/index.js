@@ -3,6 +3,7 @@ export const DELETE_MOVIE = 'delete-movie';
 export const WATCH_MOVIE = 'watch-movie';
 export const LOADING_MOVIE = 'loading-movie';
 export const DELETE_WATCHED = 'delete-watched';
+export const USER_FEEDBACK = 'user-feedback';
 
 export function fetchMovie(term) {
   return function(dispatch) {
@@ -28,14 +29,14 @@ export function fetchMovie(term) {
 export function deleteMovie() {
   return {
     type: DELETE_MOVIE
-  }
+  };
 }
 
 export function addToWatchedList(movie) {
   return {
     type: WATCH_MOVIE,
     payload: movie
-  }
+  };
 }
 
 
@@ -43,5 +44,15 @@ export function deleteWatched(title) {
   return {
     type: DELETE_WATCHED,
     payload: title
-  }
+  };
+}
+
+export function giveFeedback(index, value) {
+  return {
+    type: USER_FEEDBACK,
+    payload: {
+      index,
+      value
+    }
+  };
 }
