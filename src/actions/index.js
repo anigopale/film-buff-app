@@ -4,6 +4,7 @@ export const WATCH_MOVIE = 'watch-movie';
 export const LOADING_MOVIE = 'loading-movie';
 export const DELETE_WATCHED = 'delete-watched';
 export const USER_FEEDBACK = 'user-feedback';
+export const LOAD_LOCAL_DATA = 'load-local-data';
 
 export function fetchMovie(term) {
   return function(dispatch) {
