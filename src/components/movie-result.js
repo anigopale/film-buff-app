@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
+import _ from 'lodash';
 import { deleteMovie, addToWatchedList } from '../actions';
 
 const riseUp = keyframes`
@@ -19,7 +20,7 @@ const StyledWatchedButton = styled.a`
   margin-top: 1rem;
   text-decoration: none;
   padding: 1rem;
-  background-color: #3498db;
+  background-color: ${props => props.watched ? '#3498db' : 'grey' };
   box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, .3);
   cursor: pointer;
   color: white;
@@ -150,6 +151,13 @@ class MovieResult extends Component {
     if(movieData.Title) {
       // if movie exists, render fetched data
       let { Poster, Title, Year, Plot, Ratings } = movieData;
+      let watched = false;
+
+      // check if fetched movie is present in watched movies list
+      // pass watched as props in 'StyledWatchedButton' for theming 'Watched' button
+      if(_.find(this.props.watchedMovies, { Poster, Title, Year })) {
+        watched = true;
+      }
 
       return (
         <div className='movie-container'>
@@ -166,7 +174,7 @@ class MovieResult extends Component {
             </div>
             <h3>Plot</h3>
             <p>{Plot}</p>
-            <StyledWatchedButton onClick={this.onWatchedBtnClick}>
+            <StyledWatchedButton onClick={this.onWatchedBtnClick} watched={watched}>
               Watched
             </StyledWatchedButton>
           </div>
@@ -197,8 +205,8 @@ class MovieResult extends Component {
   }
 }
 
-function mapStateToProps({ movieData }) {
-  return { movieData };
+function mapStateToProps({ movieData, watchedMovies }) {
+  return { movieData, watchedMovies };
 }
 
 export default connect(mapStateToProps, { deleteMovie, addToWatchedList })(MovieResult);
