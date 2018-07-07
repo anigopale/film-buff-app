@@ -94,6 +94,7 @@ const StyledMovieSection = styled.div`
 `;
 
 class MovieResult extends Component {
+  state = { watched: false };
 
   // on "Watched" button click, store movieData
   onWatchedBtnClick = () => {
