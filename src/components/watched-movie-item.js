@@ -12,41 +12,70 @@ const StyledImage = styled.div`
   overflow: hidden;
   box-shadow: 0 .5rem .5rem rgba(0, 0, 0, .3);
   content: "";
-  cursor: pointer;
   transition: all 0.3s;
 
-  span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate( -50%, -50%);
-    color: rgba(192, 57, 43, 0);
-  }
 
   &:hover {
-    transform: translateY(-0.2rem);
-    box-shadow: 0 1rem 1rem rgba(0, 0, 0, .3);
-    background-color: #000;
-    opacity: 0.5;
+    
+  }
 
-    span {
-      color: rgba(192, 57, 43, 1);
+  i {
+    font-size: 200%;
+    cursor: pointer;
+    position: absolute;
+    transition: all 0.3s;
+  }
+
+  .fa-trash-alt {
+    top: 1rem;
+    right: 1rem;
+    &:hover {
+      color: #d35400;
+    }
+  }
+
+  .far {
+    bottom: 1rem;
+  }
+
+  .fa-thumbs-down {
+    left: 1rem;
+    &:hover {
+      color: #e74c3c;
+    }
+  }
+
+  .fa-thumbs-up {
+    right: 1rem;
+    &:hover {
+      color: #2ecc71;
     }
   }
 `;
 
 class WatchedMovieItem extends Component {
+
+  renderUpvoteButton() {
+    return <i class="far fa-thumbs-up"></i>;
+  }
+
+  renderDownvoteButton() {
+    return <i class="far fa-thumbs-down"></i>;
+  }
+
   render() {
     let { poster, itemIndex } = this.props;
 
     return (
-      <StyledImage
-        poster={poster}
-        onClick={() => {
-          this.props.deleteWatched(itemIndex)
-        }}
-        >
-        <span>Delete Entry</span>
+      <StyledImage poster={poster}>
+        <i
+          class="fas fa-trash-alt"
+          onClick={() => {
+            this.props.deleteWatched(itemIndex)
+          }}
+          />
+        {this.renderUpvoteButton()}
+        {this.renderDownvoteButton()}
       </StyledImage>
     );
   }
