@@ -15,11 +15,11 @@ const StyledImage = styled.div`
 `;
 
 const StyledWatchedMoviesContainer = styled.div`
-  width: 100%;
+
   margin: 0 auto;
   padding: 5rem;
   display: grid;
-  grid-template-rows: repeat(2, minmax(20rem, min-content));
+  grid-auto-rows: minmax(20rem, min-content);
   grid-template-columns: repeat(auto-fit, minmax(15rem, 15rem));
   grid-gap: 5rem;
 

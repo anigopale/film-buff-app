@@ -78,6 +78,7 @@ const StyledMovieSection = styled.div`
     background-size: cover;
     flex: 30%;
     padding-right: 2rem;
+    clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
   }
 
   .movie-info-section {
