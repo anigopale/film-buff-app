@@ -40,6 +40,12 @@ const StyledImage = styled.div`
 
   .fa-thumbs-down {
     left: 1rem;
+    ${props => {
+      if(props.likeMovie === 'no') {
+        return 'color: #e74c3c;'
+      }
+    }}
+
     &:hover {
       color: #e74c3c;
     }
@@ -47,6 +53,12 @@ const StyledImage = styled.div`
 
   .fa-thumbs-up {
     right: 1rem;
+    ${props => {
+      if(props.likeMovie === 'yes') {
+        return 'color: #2ecc71;'
+      }
+    }}
+
     &:hover {
       color: #2ecc71;
     }
@@ -80,10 +92,10 @@ class WatchedMovieItem extends Component {
   }
 
   render() {
-    let { poster, itemIndex } = this.props;
+    let { poster, itemIndex, likeMovie } = this.props;
 
     return (
-      <StyledImage poster={poster}>
+      <StyledImage poster={poster} likeMovie={likeMovie}>
         <i
           class="fas fa-trash-alt"
           onClick={() => {

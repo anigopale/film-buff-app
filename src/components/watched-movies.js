@@ -25,11 +25,12 @@ class WatchedMovies extends Component {
     if(this.props.watchedMovies.length
     && (!this.props.movieData.Title && !this.props.movieData.loading )) {
       return this.props.watchedMovies.map((movie, index) => {
-        let { Poster, Title } = movie;
+        let { Poster, Title, like } = movie;
         return (
           <WatchedMovieItem
             poster={Poster}
             itemIndex={index}
+            likeMovie={like}
             />
         );
       });
