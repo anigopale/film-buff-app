@@ -69,9 +69,11 @@ const StyledMovieSection = styled.div`
     .btn-close {
       position: absolute;
       text-decoration: none;
-      top: 0.5rem;
+      top: 1rem;
       right: 1rem;
       font-size: 150%;
+      color: #c0392b;
+      cursor: pointer;
     }
   }
 
@@ -90,6 +92,21 @@ const StyledMovieSection = styled.div`
   .ratings-section {
     display: flex;
     justify-content: space-between;
+  }
+
+  @media only screen and (max-width: 750px) {
+    .movie-container {
+      flex-direction: column;
+      margin: 1rem;
+      .btn-close {
+        z-index: 10;
+      }
+    }
+
+    .movie-thumbnail-container {
+      height: 20rem;
+      clip-path: polygon(0% 0%, 100% 0, 100% 75%, 50% 100%, 0 75%);
+    }
   }
 
 `;
@@ -161,9 +178,7 @@ class MovieResult extends Component {
 
       return (
         <div className='movie-container'>
-          <a href='#' className='btn-close' onClick={this.onCloseClick}>
-            &times;
-          </a>
+          <i className="btn-close fas fa-times-circle" onClick={this.onCloseClick} />
           <div className='movie-thumbnail-container' style={{ backgroundImage: `url(${Poster})` }}>
 
           </div>

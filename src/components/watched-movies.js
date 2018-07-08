@@ -16,6 +16,16 @@ const StyledWatchedMoviesContainer = styled.div`
   img {
     box-shadow: 0 1rem 1rem rgba(0, 0, 0, .3);
   }
+
+  @media only screen and (max-width: 750px) {
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-auto-rows: minmax(30rem, min-content);
+  }
+
+  @media only screen and (max-width: 480px) {
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-auto-rows: minmax(20rem, min-content);
+  }
 `;
 
 class WatchedMovies extends Component {
