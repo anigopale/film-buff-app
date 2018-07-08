@@ -23,6 +23,7 @@ const StyledWatchedMoviesContainer = styled.div`
   }
 
   @media only screen and (max-width: 480px) {
+    padding: 1rem;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     grid-auto-rows: minmax(20rem, min-content);
   }
