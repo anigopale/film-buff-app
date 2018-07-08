@@ -17,6 +17,7 @@ const StyledApp = styled.div`
 
   @media only screen and (max-width: 750px) {
     margin: 0 auto;
+    min-height: 100vh;
   }
 `;
 
