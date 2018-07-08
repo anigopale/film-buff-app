@@ -14,6 +14,10 @@ const StyledApp = styled.div`
   margin: 4em auto;
   background-color: #ecf0f1;
   box-shadow: 0 2rem 6rem rgba(0, 0, 0, .3);
+
+  @media only screen and (max-width: 750px) {
+    margin: 0 auto;
+  }
 `;
 
 // full screen layout
