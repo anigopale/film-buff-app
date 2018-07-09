@@ -1,6 +1,6 @@
 # FilmBuff
 
-A single page app that lets you to search for your favorite movies and add them to a **watched** list.
+A single page app that lets you search for your favorite movies and add them to the **watched** list.
 
 ## Demo
 [FilmBuff](https://film-buff-app.netlify.com/)
@@ -23,8 +23,8 @@ Clone the app repository and install required packages
 
 ```
 $ git clone https://github.com/anigopale/film-buff-app
-cd film-buff-app
-npm install
+$ cd film-buff-app
+$ npm install
 ```
 
 ## Features
